@@ -394,7 +394,7 @@ void multimapTest() {
 	}
 }
 
-int main() {
+int main_container() {
 	mapTest();
 	multimapTest();
 	system("pause");
