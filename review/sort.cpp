@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
-
+#include<map>
+#include<iterator>
 static int arr[] = {100, 10, 5, 20, 3, 0, 1};
 static int arr2[] = { 1,2,3,4,5,6,7 };
 static int arr1[7];
@@ -128,8 +129,24 @@ int binarySearch(int *a, int target, int size) {
 	return -1;//not found
 }
 
-int main() {
+static map<int, int> m;
+int climbstairs(int n) {
+	if (n == 0) return 0;
+	if (n == 1) return 1;
+	if (n == 2) return 2;
+	map<int, int>::iterator it;
+	it = m.find(n);
+	if (it != m.end()) return it->second;
+	int result;
+	result = climbstairs(n-1) + climbstairs(n-2);
+	m.insert(make_pair(n, result));
+	return result;
+}
 
+
+
+int main_sort() {
+	
 	//bubble(arr, 6);
 	//select(arr, 6);
 	//insert(arr, 7);
@@ -140,7 +157,9 @@ int main() {
 	//	cout << arr1[i] << " ";
 	//}
 	//cout << endl;
-	cout << binarySearch(arr2, 0, 7) << endl;
+	//cout << binarySearch(arr2, 0, 7) << endl;
+	int result = climbstairs(44);
+	cout << result << endl;
 	system("pause");
 	return 0;
 }
